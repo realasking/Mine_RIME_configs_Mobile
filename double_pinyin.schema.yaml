@@ -1,6 +1,8 @@
 # Rime schema
 # encoding: utf-8
 
+#Modified for adding legend
+
 schema:
   schema_id: double_pinyin
   name: 自然碼雙拼
@@ -19,6 +21,7 @@ switches:
   - name: full_shape
     states: [ 半角, 全角 ]
   - name: simplification
+    reset: 1
     states: [ 漢字, 汉字 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
@@ -52,6 +55,8 @@ speller:
   delimiter: " '"
   algebra:
     - erase/^xx$/
+    - derive/^([a-z]).+$/$1/
+    - derive/^([zcs]h).+$/$1/
     - derive/^([jqxy])u$/$1v/
     - derive/^([aoe])([ioun])$/$1$1$2/
     - xform/^([aoe])(ng)?$/$1$1$2/
@@ -141,3 +146,4 @@ recognizer:
   import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
+    
